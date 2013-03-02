@@ -8,7 +8,7 @@ urlpatterns = patterns('',
     # Admin docs
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
-    # Admin
+    # Admin app
     url(r'^admin/', include(admin.site.urls)),
 
     # Blog app
