@@ -12,6 +12,6 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
 
     # Blog app
-    url(r'^', include('blog.urls')),
+    url(r'^', include('blog.urls', namespace="blog")),
 )
 

@@ -1,0 +1,18 @@
+<div>
+    {{ post }}
+</div>
+
+<div>
+    {% if latest_comment_list %}
+        {% for listcomment in latest_comment_list %}
+            {% if comment.id == listcomment.id %}
+                <div>VIEWING: {{ listcomment }}</div>
+            {% else %}
+                <div>{{ listcomment }}</div>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        No comments
+    {% endif %}
+</div>
+
