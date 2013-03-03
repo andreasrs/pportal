@@ -1,9 +1,9 @@
-define(['jquery', 'bootstrap', 'js/tweetbox'], function($, bootstrap, tweetbox) {
+define(['jquery', 'bootstrap'], function($, bootstrap) {
     var Pportal = {
         start: function() {
-            tweetbox.attach('#tweetbox');
         }
     }
 
     return Pportal;
 });
+
