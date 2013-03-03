@@ -1,6 +1,61 @@
 {% extends "front/layout.html" %}
+{% block navcontact %}active{% endblock %}
 
 {% block content %}
-    Contact
+<div class="row">
+    <div class="span10 offset1">
+        <form method="post" action="{% url 'blog:contactindex' %}" class="form-horizontal well">
+            {% csrf_token %}
+            <fieldset>
+                <legend>
+                    Contact me
+                </legend>
+                {% if success_message %}
+                <div class="alert alert-success">
+                    {{ success_message }}
+                </div>
+                {% endif %}
+
+                {% if error_message %}
+                <div class="alert alert-error">
+                    {{ error_message }}
+                </div>
+                {% endif %}
+                <div class="control-group">
+                    <label class="control-label" for="subject">Subject:</label>
+                    <div class="controls">
+                        <input type="text" class="input-xlarge" id="subject" name="subject">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="name">Name:</label>
+                    <div class="controls">
+                        <input type="text" class="input-xlarge" id="name" name="name">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="email">E-mail:</label>
+                    <div class="controls">
+                        <input type="text" class="input-xlarge" id="email" name="email">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="message">Message:</label>
+                    <div class="controls">
+                        <textarea class="input-xlarge" id="message" rows="4" name="message"></textarea>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Send</button>
+                    <button type="reset" class="btn">Cancel</button>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
 {% endblock %}
 

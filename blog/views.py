@@ -4,7 +4,7 @@ from django.utils.datastructures import MultiValueDictKeyError
 from django.core.urlresolvers import reverse
 
 from datetime import datetime
-from blog.models import Post, Comment
+from blog.models import Post, Comment, Message
 
 
 # post list
@@ -59,11 +59,25 @@ def comment(request, post_id, comment_id):
     latest_comment_list = __get_comments(post)
     return render(request, 'comment/comment.html', {'post': post, 'comment': comment, 'latest_comment_list': latest_comment_list})
 
+# cv
 def cvindex(request):
     return render(request, 'cv/index.html')
 
+# contact
 def contactindex(request):
-    return render(request, 'contact/index.html')
+    try:
+        if request.method == 'POST':
+            if request.POST['subject'] and request.POST['name'] and request.POST['email'] and request.POST['message']:
+                message = Message(title=request.POST['subject'], name=request.POST['name'], email=request.POST['email'], message=request.POST['message'], publish_date=datetime.now())
+                message.save()
+                return render(request, 'contact/index.html', {'success_message': 'Your message has been delivered'})
+            else:
+                return render(request, 'contact/index.html', {'error_message': 'Could not send message. Make sure that you have provided all info.'})
+        else:
+            return render(request, 'contact/index.html')
+
+    except MultiValueDictKeyError as e:
+        return render(request, 'contact/index.html', {'error_message': 'Could not send message. Make sure that you have provided all info.'})
 
 #TODO abstract away form view. model would be a good place?
 def __get_post(post_id):

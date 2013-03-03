@@ -28,3 +28,14 @@ class Comment(models.Model):
     def __unicode__(self):
         return self.body
 
+# Message
+class Message(models.Model):
+    name = models.CharField(max_length=300)
+    title = models.CharField(max_length=300)
+    email = models.CharField(max_length=100)
+    message = models.CharField(max_length=5000)
+    publish_date = models.DateTimeField('date published')
+
+    def __unicode__(self):
+        return self.message
+

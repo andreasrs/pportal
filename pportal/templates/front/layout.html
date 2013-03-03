@@ -11,6 +11,7 @@
         <link href="{{ STATIC_URL }}vendor/bootstrap/css/slate/bootstrap.css" rel="stylesheet">
         <link href="{{ STATIC_URL }}vendor/bootstrap/css/market/market.css" rel="stylesheet">
         <link href="{{ STATIC_URL }}vendor/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+        <link href="{{ STATIC_URL }}css/beast.css" rel="stylesheet">
 
         <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
         <!--[if lt IE 9]>
@@ -28,17 +29,19 @@
         <div class="container">
 
             <div class="masthead">
-                <h3 class="muted">andreasrs.com</h3>
+                <h3 class="muted">Andreas Søvik</h3>
                 <div class="navbar">
+                    {% block navigation %}
                     <div class="navbar-inner">
                         <div class="container">
                             <ul class="nav">
-                                <li class="active"><a href="{% url 'blog:index' %}">Blog</a></li>
-                                <li><a href="/cv">CV</a></li>
-                                <li><a href="/contact">Contact</a></li>
+                                <li class="{% block navblog %}{% endblock %}"><a href="{% url 'blog:index' %}">Blog</a></li>
+                                <li class="{% block navcv %}{% endblock %}"><a href="/cv">CV</a></li>
+                                <li class="{% block navcontact %}{% endblock %}"><a href="/contact">Contact</a></li>
                             </ul>
                         </div>
                     </div>
+                    {% endblock %}
                 </div><!-- /.navbar -->
             </div>
 
@@ -50,8 +53,13 @@
 
             {% block extracontent %}{% endblock %}
 
-            <div class="footer">
-                <p>&copy; Andreas Rudi Søvik 2013</p>
+
+            <div class="footer mid">
+                <strong><p>&copy; Andreas Rudi Søvik 2013</p></strong>
+            </div>
+
+            <div class="row mid">
+                Powered by: Python | Django | MySQL | Bootstrap
             </div>
 
         </div> <!-- /container -->
@@ -61,15 +69,14 @@
             (function() {
                 requirejs.config({
                     baseUrl: '/static',
-                        paths: {
-                            jquery: ['//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min','lib/jquery/jquery-1.8.2.min'],
-                            bootstrap: 'vendor/bootstrap/js/bootstrap.min'
-                        },
-                        shim: {
-                            'bootstrap':{deps: ['jquery']}
-                        }
+                    paths: {
+                        jquery: ['//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min','lib/jquery/jquery-1.8.2.min'],
+                        bootstrap: 'vendor/bootstrap/js/bootstrap.min'},
+                    shim: {
+                        'bootstrap':{deps: ['jquery']}
+                    }
                 });
-                 
+
                 requirejs(['jquery', 'bootstrap', 'js/pportal'], function($, _bootstrap, pportal) {
                     pportal.start();
                 });

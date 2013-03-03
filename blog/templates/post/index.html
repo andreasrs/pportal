@@ -1,5 +1,5 @@
 {% extends "front/layout.html" %}
-
+{% block navblog %}active{% endblock %}
 {% block content %}
     {% if latest_post_list %}
         {% for post in latest_post_list %}
