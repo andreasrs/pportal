@@ -9,10 +9,11 @@ class Post(models.Model):
     description = models.CharField(max_length=500)
     body = models.CharField(max_length=5000)
     publish_date = models.DateTimeField('date published')
+
     def __unicode__(self):
         return self.body
     def published_recently(self):
-        return self.publish_date >= timezone.now() - datetime.timedelta(days=1)
+        return self.publish_date <= timezone.now() and self.publish_date >= timezone.now() - datetime.timedelta(days=1)
 
 # Comment
 class Comment(models.Model):
