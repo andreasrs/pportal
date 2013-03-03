@@ -1,18 +1,21 @@
-<div>
-    {{ post }}
-</div>
+{% extends "post/post.html" %}
 
-<div>
+{% block comments %}
+<h4>Comments:</h4>
     {% if latest_comment_list %}
         {% for listcomment in latest_comment_list %}
             {% if comment.id == listcomment.id %}
-                <div>VIEWING: {{ listcomment }}</div>
+            <div class="well highlight" id="comment_{{ listcomment.id }}">
+                <span class="label label-success">  Currently viewing</span>
             {% else %}
-                <div>{{ listcomment }}</div>
+                <div class="well" id="comment_{{ listcomment.id }}">
             {% endif %}
+            <h5>{{ listcomment.title }} - [ {{listcomment.author}} ]</h5>
+            <p>{{ listcomment.body }}</p>
+        </div>
         {% endfor %}
     {% else %}
         No comments
     {% endif %}
-</div>
+{% endblock %}
 

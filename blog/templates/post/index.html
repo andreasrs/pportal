@@ -1,12 +1,31 @@
 {% extends "front/layout.html" %}
 
-{% if latest_post_list %}
-<ul>
-    {% for post in latest_post_list %}
-    <li><a href="{% url 'blog:post' post.id %}">{{ post.title }}</a></li>
-    {% endfor %}
-</ul>
-{% else %}
-    <p>No posts.</p>
-{% endif %}
+{% block content %}
+    {% if latest_post_list %}
+        {% for post in latest_post_list %}
+            <div class="span4">
+                <h2>{{ post.title }}</h2>
+                <p>{{ post.description }}</p>
+                <p><a class="btn" href="{% url 'blog:post' post.id %}">Read more &raquo;</a></p>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="span1">
+            <h2>No posts</h2>
+        </div>
+    {% endif %}
+{% endblock %}
 
+{% block extracontent %}
+    <div class="jumbotron">
+        <h1>Get in touch!</h1>
+        <p class="lead">I can help with system design and implementation</p>
+        <a class="btn btn-large btn-success" href="http://www.linkedin.com/pub/andreas-rudi-s%C3%B8vik/10/bb0/562">Go to my LinkedIn</a>
+    </div>
+
+    <hr>
+
+    <div id="tweetbox"></div>
+
+    <hr>
+{% endblock %}

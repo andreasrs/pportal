@@ -1,27 +1,2 @@
-<div>
-    {{ post }}
-</div>
-
-<div>
-    {% if latest_comment_list %}
-        {% for comment in latest_comment_list %}
-            <div>{{ comment }}</div>
-        {% endfor %}
-    {% else %}
-        No comments
-    {% endif %}
-</div>
-
-<div>
-    <h1>Make a comment</h1>
-
-    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-
-    <form action="{% url 'blog:commentindex' post.id %}" method="post">
-        {% csrf_token %}
-        <label for="commenttext">Comment</label><br />
-        <input type="text" name="commenttext" id="commenttext"></input>
-        <input type="submit" value="Post" />
-    </form>
-</div>
+{% extends "post/post.html" %}
 

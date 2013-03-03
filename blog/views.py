@@ -25,13 +25,15 @@ def commentindex(request, post_id):
         return render(request, 'comment/index.html', {'post': post, 'latest_comment_list': comments})
 
     def do_post(post, comments, postData):
+        comment_title = postData['commenttitle']
+        comment_author = postData['commentauthor']
         comment_text = postData['commenttext']
 
         if comment_text:
-            comment = Comment(post=post, body=comment_text, publish_date=datetime.now())
+            comment = Comment(post=post, title=comment_title, author=comment_author, body=comment_text, publish_date=datetime.now())
             comment.save()
 
-            return HttpResponseRedirect(reverse('blog:comment', args=(post.id,comment.id)))
+            return HttpResponseRedirect(reverse('blog:comment', args=(post.id,comment.id)) + '#comment_' + str(comment.id))
         else:
             return do_error("Comment body must be specified")
 
@@ -56,6 +58,12 @@ def comment(request, post_id, comment_id):
     comment = __get_comment(comment_id)
     latest_comment_list = __get_comments(post)
     return render(request, 'comment/comment.html', {'post': post, 'comment': comment, 'latest_comment_list': latest_comment_list})
+
+def cvindex(request):
+    return render(request, 'cv/index.html')
+
+def contactindex(request):
+    return render(request, 'contact/index.html')
 
 #TODO abstract away form view. model would be a good place?
 def __get_post(post_id):

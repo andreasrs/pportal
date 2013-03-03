@@ -1,27 +1,41 @@
-<div>
-    {{ post }}
-</div>
+{% extends "front/layout.html" %}
 
-<div>
-    {% if latest_comment_list %}
-        {% for comment in latest_comment_list %}
-            <div>{{ comment }}</div>
-        {% endfor %}
-    {% else %}
-        No comments
-    {% endif %}
-</div>
+{% block content %}
+    <div class="well">
+        <h1>{{ post.title }}</h1>
+        <h3>{{ post.description }}</h3>
+        <p>{{ post.body }}</p>
+    </div>
 
-<div>
-    <h1>Make a comment</h1>
+    <div>
+        {% block comments %}
+            <h4>Comments:</h4>
+            {% if latest_comment_list %}
+                {% for comment in latest_comment_list %}
+                <div class="well" id="comment_{{ comment.id }}">
+                    <h5>{{ comment.title }} - [ {{comment.author}} ]</h5>
+                    <p>{{ comment.body }}</p>
+                </div>
+                {% endfor %}
+            {% else %}
+                No comments
+            {% endif %}
+        {% endblock %}
+    </div>
 
-    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+    <div class="well" id="post">
+        <h4>Make a comment</h4>
 
-    <form action="{% url 'blog:commentindex' post.id %}" method="post">
-        {% csrf_token %}
-        <label for="commenttext">Comment</label><br />
-        <input type="text" name="commenttext" id="commenttext"></input>
-        <input type="submit" value="Post" />
-    </form>
-</div>
+        {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
+        <form action="{% url 'blog:commentindex' post.id %}#post" method="post">
+            {% csrf_token %}
+            <div><label for="commenttitle">Title</label><input type="text" class="input-xlarge" name="commenttitle"></input></div>
+            <div><label for="commentauthor">Author</label><input type="text" class="input-xlarge" name="commentauthor"></input></div>
+            <label for="commenttext">Comment</label><textarea class="input-xlarge" rows="4" name="commenttext" id="commenttext"></textarea>
+            <div>
+                <input class="btn btn-large" type="submit" value="Post" />
+            </div>
+        </form>
+    </div>
+{% endblock %}
