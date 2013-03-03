@@ -4,11 +4,13 @@
     <meta charset="utf-8">
     <title>Portal: Andreas</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="A personal blogging portal">
+    <meta name="author" content="Andreas Rudi Søvik">
 
     <!-- Le styles -->
     <link href="{{ STATIC_URL }}vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="{{ STATIC_URL }}vendor/bootstrap/css/slate/bootstrap.css" rel="stylesheet">
+
     <style type="text/css">
       body {
         padding-top: 20px;
@@ -88,28 +90,26 @@
     <![endif]-->
 
     <!-- Fav and touch icons -->
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <!--<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
-      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
-                    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
-                                   <link rel="shortcut icon" href="../assets/ico/favicon.png">
-  </head>
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon" href="../assets/ico/favicon.png"> -->
+</head>
 
   <body>
 
     <div class="container">
 
       <div class="masthead">
-        <h3 class="muted">Project name</h3>
+        <h3 class="muted">PPortal</h3>
         <div class="navbar">
           <div class="navbar-inner">
             <div class="container">
               <ul class="nav">
                 <li class="active"><a href="#">Home</a></li>
-                <li><a href="#">Projects</a></li>
-                <li><a href="#">Services</a></li>
-                <li><a href="#">Downloads</a></li>
                 <li><a href="#">About</a></li>
+                <li><a href="#">CV</a></li>
                 <li><a href="#">Contact</a></li>
               </ul>
             </div>
@@ -119,9 +119,9 @@
 
       <!-- Jumbotron -->
       <div class="jumbotron">
-        <h1>Marketing stuff!</h1>
-        <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-        <a class="btn btn-large btn-success" href="#">Get started today</a>
+          <h1>Get in touch!</h1>
+        <p class="lead">I can help with system design and implementation</p>
+        <a class="btn btn-large btn-success" href="http://www.linkedin.com/pub/andreas-rudi-s%C3%B8vik/10/bb0/562">Go to my LinkedIn</a>
       </div>
 
       <hr>
@@ -148,15 +148,12 @@
       <hr>
 
       <div class="footer">
-        <p>&copy; Company 2013</p>
+        <p>&copy; Andreas Rudi Søvik 2013</p>
       </div>
 
     </div> <!-- /container -->
 
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="../assets/js/jquery.js"></script>
+    <!--<script src="../assets/js/jquery.js"></script>
     <script src="../assets/js/bootstrap-transition.js"></script>
     <script src="../assets/js/bootstrap-alert.js"></script>
     <script src="../assets/js/bootstrap-modal.js"></script>
@@ -168,7 +165,28 @@
     <script src="../assets/js/bootstrap-button.js"></script>
     <script src="../assets/js/bootstrap-collapse.js"></script>
     <script src="../assets/js/bootstrap-carousel.js"></script>
-    <script src="../assets/js/bootstrap-typeahead.js"></script>
-
+    <script src="../assets/js/bootstrap-typeahead.js"></script> -->
+    <script>
+        (function() {
+            requirejs.config({
+                baseUrl: '/static',
+                paths: {
+                    jquery: ['//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min','lib/jquery/jquery-1.8.2.min'],
+                    bootstrap: 'vendor/bootstrap/js/bootstrap.min'
+                },
+                shim: {
+                    'bootstrap':{deps: ['jquery']}
+                }
+            });
+             
+            requirejs([
+                'jquery',
+                'bootstrap'
+            ], function($, _bootstrap){
+                // this is where all the site code should begin
+                return {};
+            });
+        })();
+    </script>
   </body>
 </html>
