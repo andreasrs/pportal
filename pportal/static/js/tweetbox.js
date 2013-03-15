@@ -8,7 +8,7 @@ define(['jquery'], function($) {
             var twitter_api_url = 'http://search.twitter.com/search.json';
              
             $.getJSON(
-                twitter_api_url + '?callback=?&rpp=5&q=python,django',
+                twitter_api_url + '?callback=?&rpp=5&q=arsovik',
 
                 function(data) {
 
