@@ -1,7 +1,12 @@
 input, textarea {
     color: #333;
 }
-
+.container > hr {
+    margin: 20px 0;
+}
+.jumbotron {
+    margin: 20px 0;
+}
 .mid {
     text-align:center;
 }
