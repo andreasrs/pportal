@@ -6,7 +6,6 @@ from django.core.urlresolvers import reverse
 from datetime import datetime
 from blog.models import Post, Comment, Message
 
-
 # post list
 def index(request):
     latest_post_list = __get_posts()
