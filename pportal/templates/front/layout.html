@@ -7,24 +7,16 @@
         <meta name="description" content="A personal blogging portal">
         <meta name="author" content="Andreas Rudi Søvik">
 
-        <script src="/static/vendor/requirejs/js/require.js"></script>
-        <link href="{{ STATIC_URL }}vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
-        <link href="{{ STATIC_URL }}vendor/bootstrap/css/slate/bootstrap.css" rel="stylesheet">
+        <script src="{{ STATIC_URL }}vendor/requirejs/js/require.js"></script>
+
+        <link href="{{ STATIC_URL }}vendor/bootstrap/css/slate/bootstrap.min.css" rel="stylesheet">
         <link href="{{ STATIC_URL }}vendor/bootstrap/css/market/market.css" rel="stylesheet">
-        <link href="{{ STATIC_URL }}vendor/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
-        <link href="{{ STATIC_URL }}css/beast.css" rel="stylesheet">
+        <link href="{{ STATIC_URL }}css/pportal.css" rel="stylesheet">
 
         <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
         <!--[if lt IE 9]>
         <script src="../assets/js/html5shiv.js"></script>
         <![endif]-->
-
-        <!-- Fav and touch icons -->
-        <!--<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
-        <link rel="shortcut icon" href="../assets/ico/favicon.png"> -->
     </head>
     <body>
         <div class="container">
@@ -70,7 +62,7 @@
                 requirejs.config({
                     baseUrl: '/static',
                     paths: {
-                        jquery: ['//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min','lib/jquery/jquery-1.8.2.min'],
+                        jquery: 'vendor/jquery/jquery-1.10.2.min',
                         bootstrap: 'vendor/bootstrap/js/bootstrap.min'},
                     shim: {
                         'bootstrap':{deps: ['jquery']}
